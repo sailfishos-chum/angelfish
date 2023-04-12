@@ -1,0 +1,25 @@
+From a959532c18352c6f134c8f738152e37ecad70aa9 Mon Sep 17 00:00:00 2001
+From: Rinigus <rinigus.git@gmail.com>
+Date: Wed, 12 Apr 2023 21:58:39 +0300
+Subject: [PATCH 1/2] Skip few dependencies
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index cfc11cd..4967c9c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -56,7 +56,7 @@ ecm_setup_version(${PROJECT_VERSION}
+ 
+ find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Core Quick Test Gui Svg QuickControls2 Sql Widgets)
+ find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} OPTIONAL_COMPONENTS Feedback)
+-find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS Kirigami2 Purpose I18n Config CoreAddons DBusAddons WindowSystem Notifications QQC2DesktopStyle)
++find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS Kirigami2 I18n Config CoreAddons DBusAddons WindowSystem Notifications)
+ find_package(KF${QT_MAJOR_VERSION}KirigamiAddons 0.6 REQUIRED)
+ set_package_properties(KF${QT_MAJOR_VERSION}QQC2DesktopStyle PROPERTIES TYPE RUNTIME)
+ 
+-- 
+2.39.2
+
