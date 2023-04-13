@@ -7,7 +7,7 @@ Summary:        Plasma Mobile minimal web browser
 
 License:        MIT and GPLv2+ and LGPLv2 and LGPLv2+
 # For a breakdown of the licensing, see PACKAGE-LICENSING
-URL:            https://invent.kde.org/plasma-mobile/%{name}
+URL:            https://apps.kde.org/angelfish/
 Source0: %{name}-%{version}.tar.bz2
 
 Source10: org.kde.angelfish-86.png
@@ -79,6 +79,17 @@ Requires: qt-runner
 
 %description
 Web browser for mobile devices with Plasma integration
+
+PackageName: Angelfish Web Browser
+Type: desktop-application
+Categories:
+ - Network
+Custom:
+  Repo: https://invent.kde.org/plasma-mobile/angelfish
+  PackagingRepo: https://github.com/sailfishos-chum/angelfish
+Icon: https://github.com/sailfishos-chum/angelfish/raw/main/rpm/org.kde.angelfish-256.png
+Screenshots:
+ - https://github.com/sailfishos-chum/angelfish/raw/main/screenshots/screenshot1.png
 
 %prep
 %autosetup -n %{name}-%{version}/upstream -p1
