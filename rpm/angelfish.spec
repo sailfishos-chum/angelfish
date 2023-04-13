@@ -76,6 +76,7 @@ Requires: opt-qt5-qtsvg
 Requires: opt-qt5-qtwebengine
 Requires: opt-qt5-qtlocation
 Requires: qt-runner
+Requires: breeze-icons
 
 %description
 Web browser for mobile devices with Plasma integration
@@ -90,6 +91,7 @@ Custom:
 Icon: https://github.com/sailfishos-chum/angelfish/raw/main/rpm/org.kde.angelfish-256.png
 Screenshots:
  - https://github.com/sailfishos-chum/angelfish/raw/main/screenshots/screenshot1.png
+ - https://github.com/sailfishos-chum/angelfish/raw/main/screenshots/screenshot2.png
 
 %prep
 %autosetup -n %{name}-%{version}/upstream -p1
