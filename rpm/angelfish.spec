@@ -10,6 +10,11 @@ License:        MIT and GPLv2+ and LGPLv2 and LGPLv2+
 URL:            https://invent.kde.org/plasma-mobile/%{name}
 Source0: %{name}-%{version}.tar.bz2
 
+Source10: org.kde.angelfish-86.png
+Source11: org.kde.angelfish-108.png
+Source12: org.kde.angelfish-128.png
+Source13: org.kde.angelfish-256.png
+
 # Sailfish OS specific
 Patch1: 0001-Skip-few-dependencies.patch
 Patch2: 0002-Revert-Make-use-of-C-20-ranges-library.patch
@@ -70,6 +75,7 @@ Requires: opt-qt5-qtquickcontrols2
 Requires: opt-qt5-qtsvg
 Requires: opt-qt5-qtwebengine
 Requires: opt-qt5-qtlocation
+Requires: qt-runner
 
 %description
 Web browser for mobile devices with Plasma integration
@@ -85,7 +91,9 @@ touch .git
 mkdir -p build
 pushd build
 
-%_opt_cmake_kf5 ../
+%_opt_cmake_kf5 ../ \
+		-DKDE_INSTALL_BINDIR:PATH=/usr/bin \
+		-DCMAKE_INSTALL_PREFIX:PATH=/usr/
 %make_build
 
 popd
@@ -95,18 +103,34 @@ pushd build
 make DESTDIR=%{buildroot} install
 popd
 
+# adjust Exec command in .desktop
+sed -i "s|Exec=angelfish|Exec=qt-runner /usr/bin/angelfish|g" \
+    %{buildroot}/%{_datadir}/applications/org.kde.%{name}.desktop
+echo -e "\n[X-Sailjail]\nSandboxing=Disabled" >> \
+     %{buildroot}/%{_datadir}/applications/org.kde.%{name}.desktop
+
+# copy icons
+install -p -m644 -D %{SOURCE11} \
+	%{buildroot}/%{_datadir}/icons/hicolor/86x86/apps/org.kde.%{name}.png
+install -p -m644 -D %{SOURCE11} \
+	%{buildroot}/%{_datadir}/icons/hicolor/108x108/apps/org.kde.%{name}.png
+install -p -m644 -D %{SOURCE11} \
+	%{buildroot}/%{_datadir}/icons/hicolor/128x128/apps/org.kde.%{name}.png
+install -p -m644 -D %{SOURCE11} \
+	%{buildroot}/%{_datadir}/icons/hicolor/256x256/apps/org.kde.%{name}.png
+
 
 %files
 %license LICENSES/{MIT,GPL-2.0-or-later,LGPL-2.0-only,LGPL-2.0-or-later}.txt
 %doc README.md
 
-%{_opt_kf5_bindir}/%{name}
-%{_opt_kf5_bindir}/%{name}-webapp
+%{_bindir}/%{name}
+%{_bindir}/%{name}-webapp
 
-%{_opt_kf5_datadir}/applications/org.kde.%{name}.desktop
+%{_datadir}/applications/org.kde.%{name}.desktop
 %{_opt_kf5_datadir}/config.kcfg/%{name}settings.kcfg
-%{_opt_kf5_datadir}/icons/hicolor/scalable/apps/org.kde.%{name}.svg
-%{_opt_kf5_datadir}/knotifications5/%{name}.notifyrc
-%{_opt_kf5_datadir}/locale
+%{_datadir}/icons/hicolor/*/apps/org.kde.%{name}.*
+%{_datadir}/knotifications5/%{name}.notifyrc
+%{_datadir}/locale
 
 %{_metainfodir}/org.kde.%{name}.metainfo.xml
