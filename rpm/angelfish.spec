@@ -119,7 +119,7 @@ popd
 # adjust Exec command in .desktop
 sed -i "s|Exec=angelfish|Exec=qt-runner /usr/bin/angelfish|g" \
     %{buildroot}/%{_datadir}/applications/org.kde.%{name}.desktop
-echo -e "\n[X-Sailjail]\nSandboxing=Disabled" >> \
+echo -e "X-Nemo-Single-Instance=no\nX-Nemo-Application-Type=no-invoker\n\n[X-Sailjail]\nSandboxing=Disabled" >> \
      %{buildroot}/%{_datadir}/applications/org.kde.%{name}.desktop
 
 # copy icons
