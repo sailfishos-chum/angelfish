@@ -123,13 +123,13 @@ echo -e "X-Nemo-Single-Instance=no\nX-Nemo-Application-Type=no-invoker\n\n[X-Sai
      %{buildroot}/%{_datadir}/applications/org.kde.%{name}.desktop
 
 # copy icons
-install -p -m644 -D %{SOURCE11} \
+install -p -m644 -D %{SOURCE10} \
 	%{buildroot}/%{_datadir}/icons/hicolor/86x86/apps/org.kde.%{name}.png
 install -p -m644 -D %{SOURCE11} \
 	%{buildroot}/%{_datadir}/icons/hicolor/108x108/apps/org.kde.%{name}.png
-install -p -m644 -D %{SOURCE11} \
+install -p -m644 -D %{SOURCE12} \
 	%{buildroot}/%{_datadir}/icons/hicolor/128x128/apps/org.kde.%{name}.png
-install -p -m644 -D %{SOURCE11} \
+install -p -m644 -D %{SOURCE13} \
 	%{buildroot}/%{_datadir}/icons/hicolor/256x256/apps/org.kde.%{name}.png
 
 
