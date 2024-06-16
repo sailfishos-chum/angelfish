@@ -1,7 +1,7 @@
 %global _metainfodir %{_datadir}/metainfo
 
 Name:           angelfish
-Version:        23.03.90
+Version:        23.04.3
 Release:        1%{?dist}
 Summary:        Plasma Mobile minimal web browser
 
