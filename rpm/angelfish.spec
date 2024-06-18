@@ -101,20 +101,13 @@ Screenshots:
 export QTDIR=%{_opt_qt5_prefix}
 touch .git
 
-mkdir -p build
-pushd build
-
-%_opt_cmake_kf5 ../ \
+%_opt_cmake_kf5  \
 		-DKDE_INSTALL_BINDIR:PATH=/usr/bin \
 		-DCMAKE_INSTALL_PREFIX:PATH=/usr/
-%make_build
-
-popd
+%cmake_build
 
 %install
-pushd build
-make DESTDIR=%{buildroot} install
-popd
+%cmake_install
 
 # adjust Exec command in .desktop
 sed -i "s|Exec=angelfish|Exec=qt-runner /usr/bin/angelfish|g" \
