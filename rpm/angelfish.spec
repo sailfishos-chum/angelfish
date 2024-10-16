@@ -1,7 +1,7 @@
 %global _metainfodir %{_datadir}/metainfo
 
 Name:           angelfish
-Version:        23.04.3
+Version:        24.08.2
 Release:        1%{?dist}
 Summary:        Plasma Mobile minimal web browser
 
@@ -17,66 +17,59 @@ Source13: org.kde.angelfish-256.png
 
 # Sailfish OS specific
 Patch1: 0001-Skip-few-dependencies.patch
-Patch2: 0002-Revert-Make-use-of-C-20-ranges-library.patch
-
-%{?opt_kf5_default_filter}
+#Patch2: 0002-Revert-Make-use-of-C-20-ranges-library.patch
 
 
 #BuildRequires:  appstream
 BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
-BuildRequires:  opt-extra-cmake-modules
+BuildRequires:  kf6-extra-cmake-modules
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
-BuildRequires:  opt-kf5-rpm-macros
+BuildRequires:  kf6-rpm-macros
 #BuildRequires:  libappstream-glib
  
-BuildRequires:  opt-kf5-kconfig-devel
-BuildRequires:  opt-kf5-kcoreaddons-devel
-BuildRequires:  opt-kf5-kdbusaddons-devel
-BuildRequires:  opt-kf5-ki18n-devel
-BuildRequires:  opt-kf5-kirigami2-devel
-BuildRequires:  opt-kf5-kirigami-addons
-BuildRequires:  opt-kf5-knotifications-devel
+BuildRequires:  kf6-kconfig-devel
+BuildRequires:  kf6-kcoreaddons-devel
+BuildRequires:  kf6-kdbusaddons-devel
+BuildRequires:  kf6-ki18n-devel
+BuildRequires:  kf6-kirigami-devel
+BuildRequires:  kf6-kirigami-addons-devel
+BuildRequires:  kf6-knotifications-devel
 #BuildRequires:  cmake(KF5Purpose)
-#BuildRequires:  cmake(KF5QQC2DesktopStyle)
-BuildRequires:  opt-kf5-kwindowsystem-devel
+BuildRequires:  kf6-qqc2-desktop-style
+BuildRequires:  kf6-kwindowsystem-devel
+BuildRequires:  futuresql-qt6-devel
 
-BuildRequires:  opt-qt5-qtbase-devel
+BuildRequires:  qt6-qtbase-devel
 #BuildRequires:  cmake(Qt5Feedback)
 #BuildRequires:  cmake(Qt5Keychain)
-BuildRequires:  opt-qt5-qtmultimedia-devel
-BuildRequires:  opt-qt5-qtdeclarative-devel
-BuildRequires:  opt-qt5-qtquickcontrols2-devel
-BuildRequires:  opt-qt5-qtsvg-devel
-BuildRequires:  opt-qt5-qtwebengine-devel
-BuildRequires:  opt-qt5-qtwebsockets-devel
-BuildRequires:  opt-qt5-qtwebchannel-devel
-BuildRequires:  opt-qt5-qtlocation-devel
-BuildRequires:  opt-qt5-qtlocation-pos-geoclue
-BuildRequires:  opt-qt5-qtlocation-pos-geoclue2
-BuildRequires:  opt-qt5-qtlocation-pos-positionpoll
+BuildRequires:  qt6-qtmultimedia-devel
+BuildRequires:  qt6-qtdeclarative-devel
+BuildRequires:  qt6-qtquickcontrols2-devel
+BuildRequires:  qt6-qtsvg-devel
+BuildRequires:  qt6-qtwebengine-devel
+BuildRequires:  qt6-qtwebsockets-devel
+BuildRequires:  qt6-qtwebchannel-devel
+BuildRequires:  qt6-qtlocation-devel
 
-%{?_opt_qt5:Requires: %{_opt_qt5}%{?_isa} = %{_opt_qt5_version}}
-
-Requires: opt-kf5-kirigami2%{_isa} 
-Requires: opt-qt5-qtwayland%{_isa}
-Requires: opt-kf5-kconfig-gui
-Requires: opt-kf5-kcoreaddons
-Requires: opt-kf5-kdbusaddons
-Requires: opt-kf5-ki18n
-Requires: opt-kf5-kirigami2
-Requires: opt-kf5-kirigami-addons
-Requires: opt-kf5-knotifications
-Requires: opt-kf5-kwindowsystem
-Requires: opt-qt5-qtbase-gui
-Requires: opt-qt5-qtmultimedia
-Requires: opt-qt5-qtquickcontrols2
-Requires: opt-qt5-qtsvg
-Requires: opt-qt5-qtwebengine
-Requires: opt-qt5-qtlocation
-Requires: qt-runner
-Requires: breeze-icons
+Requires: kf6-kirigami
+Requires: qt6-qtwayland
+Requires: kf6-kcoreaddons
+Requires: kf6-kdbusaddons
+Requires: kf6-ki18n
+Requires: kf6-kirigami
+Requires: kf6-kirigami-addons
+Requires: kf6-knotifications
+Requires: kf6-kwindowsystem
+Requires: qt6-qtbase-gui
+Requires: qt6-qtmultimedia
+Requires: qt6-qtsvg
+Requires: qt6-qtwebengine
+Requires: qt6-qtlocation
+Requires: qt6-qt5compat
+Requires: qt-runner-qt6
+Requires: kf6-breeze-icons
 
 %description
 Web browser for mobile devices with Plasma integration
@@ -101,9 +94,7 @@ Screenshots:
 export QTDIR=%{_opt_qt5_prefix}
 touch .git
 
-%_opt_cmake_kf5  \
-		-DKDE_INSTALL_BINDIR:PATH=/usr/bin \
-		-DCMAKE_INSTALL_PREFIX:PATH=/usr/
+%cmake_kf6
 %cmake_build
 
 %install
@@ -134,9 +125,9 @@ install -p -m644 -D %{SOURCE13} \
 %{_bindir}/%{name}-webapp
 
 %{_datadir}/applications/org.kde.%{name}.desktop
-%{_opt_kf5_datadir}/config.kcfg/%{name}settings.kcfg
+%{_kf6_datadir}/config.kcfg/%{name}settings.kcfg
 %{_datadir}/icons/hicolor/*/apps/org.kde.%{name}.*
-%{_datadir}/knotifications5/%{name}.notifyrc
+%{_datadir}/knotifications6/%{name}.notifyrc
 %{_datadir}/locale
 
 %{_metainfodir}/org.kde.%{name}.metainfo.xml
