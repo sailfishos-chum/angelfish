@@ -52,23 +52,14 @@ BuildRequires:  qt6-qtwebengine-devel
 BuildRequires:  qt6-qtwebsockets-devel
 BuildRequires:  qt6-qtwebchannel-devel
 BuildRequires:  qt6-qtlocation-devel
+BuildRequires:  qt6-qtbase-private-devel
 
 Requires: kf6-kirigami
-Requires: qt6-qtwayland
-Requires: kf6-kcoreaddons
-Requires: kf6-kdbusaddons
-Requires: kf6-ki18n
-Requires: kf6-kirigami
 Requires: kf6-kirigami-addons
-Requires: kf6-knotifications
-Requires: kf6-kwindowsystem
-Requires: qt6-qtbase-gui
 Requires: qt6-qtmultimedia
 Requires: qt6-qtsvg
-Requires: qt6-qtwebengine
 Requires: qt6-qtlocation
 Requires: qt6-qt5compat
-Requires: qt-runner-qt6
 Requires: kf6-breeze-icons
 
 %description
@@ -91,9 +82,6 @@ Screenshots:
 
 
 %build
-export QTDIR=%{_opt_qt5_prefix}
-touch .git
-
 %cmake_kf6
 %cmake_build
 
