@@ -1,7 +1,7 @@
 %global _metainfodir %{_datadir}/metainfo
 
 Name:           angelfish
-Version:        24.08.2
+Version:        25.08.3
 Release:        1%{?dist}
 Summary:        Plasma Mobile minimal web browser
 
@@ -16,8 +16,7 @@ Source12: org.kde.angelfish-128.png
 Source13: org.kde.angelfish-256.png
 
 # Sailfish OS specific
-Patch1: 0001-Skip-few-dependencies.patch
-#Patch2: 0002-Revert-Make-use-of-C-20-ranges-library.patch
+Patch1: 0001-Drop-Purpose-and-Crash-from-dependencies.patch
 
 
 #BuildRequires:  appstream
