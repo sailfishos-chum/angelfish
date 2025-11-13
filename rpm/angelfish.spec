@@ -17,7 +17,7 @@ Source13: org.kde.angelfish-256.png
 
 # Sailfish OS specific
 Patch1: 0001-Drop-Purpose-and-Crash-from-dependencies.patch
-
+Patch2: 0002-Take-into-account-env-QTWEBENGINE_CHROMIUM_FLAGS.patch
 
 #BuildRequires:  appstream
 BuildRequires:  cmake
