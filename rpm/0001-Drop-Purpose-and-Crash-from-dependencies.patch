@@ -1,0 +1,61 @@
+From 0444a1e582165bce1cd93928098c1d834febb7a2 Mon Sep 17 00:00:00 2001
+From: Rinigus <rinigus.git@gmail.com>
+Date: Tue, 11 Nov 2025 19:42:39 +0000
+Subject: [PATCH] Drop Purpose and Crash from dependencies
+
+---
+ CMakeLists.txt     | 2 +-
+ src/CMakeLists.txt | 1 -
+ src/main.cpp       | 4 ++--
+ 3 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9d9e3835..f33656c0 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -58,7 +58,7 @@ ecm_setup_version(${PROJECT_VERSION}
+ 
+ find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Core Quick Test Gui Svg QuickControls2 Sql Widgets)
+ find_package(Qt6 ${QT_MIN_VERSION} OPTIONAL_COMPONENTS Feedback)
+-find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS Kirigami Purpose I18n Config CoreAddons DBusAddons WindowSystem Notifications Crash OPTIONAL_COMPONENTS QQC2DesktopStyle)
++find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS Kirigami I18n Config CoreAddons DBusAddons WindowSystem Notifications OPTIONAL_COMPONENTS QQC2DesktopStyle)
+ find_package(KF6KirigamiAddons 0.6 REQUIRED)
+ set_package_properties(KF6QQC2DesktopStyle PROPERTIES TYPE RUNTIME)
+ 
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 7ba23c35..a4f673ea 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -90,7 +90,6 @@ target_link_libraries(angelfish PRIVATE
+     KF6::ConfigGui
+     KF6::DBusAddons
+     KF6::WindowSystem
+-    KF6::Crash
+     QCoro6::Qml
+     AngelfishCore
+     AngelfishCoreplugin
+diff --git a/src/main.cpp b/src/main.cpp
+index 62bc4ff5..465eaa62 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -16,7 +16,7 @@
+ #include <QtWebEngineQuick>
+ 
+ #include <KAboutData>
+-#include <KCrash>
++// #include <KCrash>
+ #include <KDBusService>
+ #include <KLocalizedContext>
+ #include <KLocalizedString>
+@@ -95,7 +95,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
+     KAboutData::setApplicationData(aboutData);
+ 
+     // Crash Handling
+-    KCrash::initialize();
++    // KCrash::initialize();
+ 
+     // Open links in the already running window when e.g clicked on in another application.
+     KDBusService service(KDBusService::Unique, &app);
+-- 
+2.43.7
+
